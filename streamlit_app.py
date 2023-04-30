@@ -11,7 +11,7 @@ def main():
     st.caption(APP_SUBTITLE)
 
 # LOAD DATA
-df = pd.read_excel("data/Accidentes_de_transito_Palmira_2020.xlsx")
+df = pd.read_excel("/data/Accidentes_de_transito_Palmira_2020.xlsx")
 
 st.write(df.shape)
 st.write(df.head())
