@@ -1,5 +1,6 @@
-from nis import maps
 import streamlit as st
+
+# streamlit run https://github.com/leoperezx/accidentes/streamlit_app.py
 
 APP_TITLE = "Reporte de accidentes vehículares de Palmira - 2020."
 APP_SUBTITLE = "Fuente: Datos abiertos, Alcaldía de Palmira."
