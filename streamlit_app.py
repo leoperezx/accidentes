@@ -15,11 +15,9 @@ df = pd.read_csv("data/Accidentes_de_transito_Palmira_2020.csv")
 # Clear Data
 df_geo = df[["LAT","LONG"]]
 
-
-
 df_geo = fn.darFormatoGeo( fn.limpiarPunto( df_geo ).astype(int) ) 
 
-df[["LAT","LONG"]] = df_geo
+
 
 # print(df[["LAT","LONG"]])
 
@@ -28,8 +26,8 @@ def main():
     st.title(APP_TITLE)
     st.caption(APP_SUBTITLE)
 
-    # LOAD DATA
-    df = pd.read_csv("data/Accidentes_de_transito_Palmira_2020.csv")
+    # LOAD DATA CLEAR
+    df[["LAT","LONG"]] = df_geo
 
     st.write(df.shape)
     st.write(df.head())
