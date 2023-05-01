@@ -1,9 +1,27 @@
 import streamlit as st
 import pandas as pd 
+import numpy as np
+import functions as fn
+
 # streamlit run https://github.com/leoperezx/accidentes/streamlit_app.py
 
 APP_TITLE = "Reporte de accidentes vehículares de Palmira - 2020."
 APP_SUBTITLE = "Fuente: Datos abiertos, Alcaldía de Palmira."
+
+# LOAD DATA
+
+df = pd.read_csv("data/Accidentes_de_transito_Palmira_2020.csv")
+
+# Clear Data
+df_geo = df[["LAT","LONG"]]
+
+
+
+df_geo = fn.darFormatoGeo( fn.limpiarPunto( df_geo ).astype(int) ) 
+
+df[["LAT","LONG"]] = df_geo
+
+# print(df[["LAT","LONG"]])
 
 def main():
     st.set_page_config(APP_TITLE)
