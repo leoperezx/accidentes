@@ -18,7 +18,7 @@ En el siguiente enlace se encuentra el archivo con varias tablas dinámicas. Las
 [Mapa interactivo en Google maps de todos los accidentes en Palmira en el año 2020.](https://www.google.com/maps/d/edit?mid=1G1UVLTi5N7dfuV8-_FErSmb45b7WuQU&usp=sharing)
 
 
-**Nota: Esta página es un trabajo en proceso de construcción, lamento las molestias.**
+
 ---
 
 > IG: @leoperez.x
