@@ -21,4 +21,5 @@ En el siguiente enlace se encuentra el archivo con varias tablas dinámicas. Las
 
 ---
 
-> IG: @leoperez.x
+> &copy; 2023 Twiter: [@leoperez.x](https://twitter.com/leoperezx)
+ 
