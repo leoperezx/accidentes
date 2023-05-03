@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd 
 import functions as fn
+import os
 
 
 
@@ -35,6 +36,8 @@ df.rename(columns={'BARRIOS-COREGIMIENTO- VIA':'BARRIOS_CORREGIMIENTO_VIA',
 
 # LOAD DATA CLEAR
 df[["LAT","LONG"]] = df_geo # reemplazamos las columnas después de "limpiarlas"
+
+df.to_csv('dataset.csv',index=False)
 
 def main():
     st.set_page_config(APP_TITLE)
@@ -80,13 +83,6 @@ if __name__=="__main__":
     main()
     
     st.text('Código del mapa interactivo')
-    # components.html(
-    #     """
-    #     <iframe src="./map.html" height="600" width="600" title="Iframe Example"></iframe>
-
-    #     """,width=600,height=600)
-
-    # https://www.google.com/maps/d/edit?mid=1llROdOHQaUo4zKZyqCeKF9jey08hdss&usp=sharing
 
     with st.echo():
         
@@ -100,6 +96,7 @@ if __name__=="__main__":
         for row in df.itertuples():
             iframe = folium.IFrame("<body style=font-family:'sans-serif'>Choque de vehículo tipo: " + 
                                     row.CLASE_DE_VEHICULO +"<br>" +
+                                    "Nivel de gravedad:" +
                                     row.GRAVEDAD)
             
             pop_up = folium.Popup(iframe, min_width=200, max_width=200)
