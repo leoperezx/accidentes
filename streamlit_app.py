@@ -1,9 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd 
-# import folium
+import folium
 import functions as fn
-# from streamlit_folium import folium_static
+from streamlit_folium import folium_static
 
 
 
@@ -82,9 +82,9 @@ if __name__=="__main__":
     
     st.text('Código del mapa interactivo')
     with st.echo():
-        import streamlit as st
-        from streamlit_folium import folium_static
-        import folium
+        # import streamlit as st
+        # from streamlit_folium import folium_static
+        # import folium
         
         # tiles: propiedad para cambiar el estilo del mapa.
         some_map = folium.Map(location=(3.535513,-76.297656),tiles="cartodbpositron", zoom_start=10)
