@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import pandas as pd 
 # import folium
 import functions as fn
-from streamlit_folium import folium_static
+# from streamlit_folium import folium_static
 
 
 
