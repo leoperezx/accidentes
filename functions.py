@@ -1,6 +1,10 @@
 # VARIABLES
 
 def limpiarPunto(df):
+    '''
+    Transforma los números en texto y elimia los puntos 
+    que denotan las cifras de mil. 
+    '''
     rango = len(df.index)
     columnas = df.columns
     
@@ -12,7 +16,12 @@ def limpiarPunto(df):
 
 
 def cantidadDeDigitos(num):
-    # cantidad de cifras de un número    
+    '''
+    Devuelve la cantidad de cifras de un número. 
+    
+    ej. >>> cantidadDeDigitos(9876) = 4
+    '''
+       
     count=0
     num=abs(num)
     while(num>0):
@@ -22,6 +31,15 @@ def cantidadDeDigitos(num):
 
 
 def darFormatoGeo(df):
+    '''
+    Da formato a los números en las columnas LAT y LONG.
+
+    - Combierte los números de 4, 5 y 6 cifras de la columna de LAT
+    a formato de georeferencia de la librería Folium LAT ( #.##### ).
+
+    - Combierte los números de 5, 6 y 7 cifras de la columna de LONG
+    a formato de georeferencia de la librería Folium LONG ( -##.##### ).
+    '''
     rango = len(df.index)
     for i in range(rango):   
         # es de cuatro cifras pero debe ser de 6 (#.###00)
