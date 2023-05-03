@@ -1,9 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd 
-# import folium
 import functions as fn
-# from streamlit_folium import folium_static
+
 
 
 
@@ -81,8 +80,9 @@ if __name__=="__main__":
     main()
     
     st.text('Código del mapa interactivo')
+   
     with st.echo():
-        # import streamlit as st
+        
         from streamlit_folium import folium_static
         import folium
         
@@ -92,10 +92,8 @@ if __name__=="__main__":
         
         for row in df.itertuples():
             iframe = folium.IFrame("<body style=font-family:'sans-serif'>Choque de vehículo tipo: " + 
-                                    row.MARCA + "<br>" + 
                                     row.CLASE_DE_VEHICULO +"<br>" +
-                                    row.GRAVEDAD + "<br>" +
-                                    row.BARRIOS_CORREGIMIENTO_VIA)
+                                    row.GRAVEDAD)
             
             pop_up = folium.Popup(iframe, min_width=200, max_width=200)
 
