@@ -74,13 +74,20 @@ def main():
     st.write(df.head(10))
     
 
-    # DISPLAY METRICS
+    # DISPLAY METRICS No module named 'streamlit_folium'
 
 if __name__=="__main__":
     main()
     
     st.text('Código del mapa interactivo')
-   
+    # components.html(
+    #     """
+    #     <iframe src="./map.html" height="600" width="600" title="Iframe Example"></iframe>
+
+    #     """,width=600,height=600)
+
+    # https://www.google.com/maps/d/edit?mid=1llROdOHQaUo4zKZyqCeKF9jey08hdss&usp=sharing
+
     with st.echo():
         
         from streamlit_folium import folium_static
