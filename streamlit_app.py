@@ -2,10 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd 
 import functions as fn
-import os
-
-
-
 
 # streamlit run https://github.com/leoperezx/accidentes/streamlit_app.py
 
@@ -40,6 +36,7 @@ df[["LAT","LONG"]] = df_geo # reemplazamos las columnas después de "limpiarlas"
 df.to_csv('dataset.csv',index=False)
 
 def main():
+    
     st.set_page_config(APP_TITLE)
     st.title(APP_TITLE)
     st.caption(APP_SUBTITLE)
