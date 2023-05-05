@@ -8,32 +8,27 @@ import functions as fn
 APP_TITLE = "Reporte de accidentes vehículares de Palmira - 2020."
 APP_SUBTITLE = "Fuente: Datos abiertos, Alcaldía de Palmira."
 APP_SUBTITLE_MAP ="Mapa de todos los accidentes registrados de Palmira - 2020."
+APP_INTRO = ""
 
-# LOAD DATA
+df = pd.read_csv("dataset.csv")
 
-df = pd.read_csv("data/Accidentes_de_transito_Palmira_2020.csv")
+def preparandoMapa():
+           
+    from streamlit_folium import folium_static
+    import folium
+    
+    # tiles: propiedad para cambiar el estilo del mapa.
+    some_map = folium.Map(location=(3.535513,-76.297656),tiles="cartodbpositron", zoom_start=10)
 
-# Clear Data
-# Los datos de latitud y longitud están sin formato y escritos como 
-# números enteros con puntos de cifras de mil.
-df_geo = df[["LAT","LONG"]]
-# Cambio de la dfrmación - Correcciones
-df_geo = fn.darFormatoGeo( fn.limpiarPunto( df_geo ).astype(int) ) 
+    tool_tip="Click me!"    
 
-# Cambio de nombre a las columnas para un mejor manejo en con Folium.
-# print(df.columns) # Columnas antes de renombrarlas
-df.rename(columns={'BARRIOS-COREGIMIENTO- VIA':'BARRIOS_CORREGIMIENTO_VIA',
-                   'CONDICION DE LA VICTIMA':'CONDICION_DE_LA_VICTIMA',
-                   'CLASE DE SINIESTRO':'CLASE_DE_SINIESTRO',
-                   'CLASE VEHICULO':'CLASE_DE_VEHICULO',
-                   'TIPO DE SERVICIO':'TIPO_DE_SERVICIO'}, inplace = True)
-# print(df[["LAT","LONG"]])
-# print(df.columns) # columnas después de renombrarlas
+    for row in df.itertuples():
+        pop_up=("<p>Choque de vehículo tipo: " + row.CLASE_DE_VEHICULO +"</p>" +
+                    "<p>Nivel de gravedad:" + row.GRAVEDAD + "</p>")
+        
+        folium.Marker([row.LAT,row.LONG], popup=pop_up, tooltip=tool_tip).add_to(some_map)
 
-# LOAD DATA CLEAR
-df[["LAT","LONG"]] = df_geo # reemplazamos las columnas después de "limpiarlas"
-
-df.to_csv('dataset.csv',index=False)
+    return folium_static(some_map)
 
 def main():
     
@@ -73,35 +68,10 @@ def main():
 
     st.write(df.head(10))
     
+    st.subheader("Mapa interactivo de los accidentes - Palmira 2020")
 
-    # DISPLAY METRICS No module named 'streamlit_folium'
+    preparandoMapa()
 
-if __name__=="__main__":
-    main()
-    
-    st.text('Código del mapa interactivo')
-
-    with st.echo():
-        
-        from streamlit_folium import folium_static
-        import folium
-        
-        # tiles: propiedad para cambiar el estilo del mapa.
-        some_map = folium.Map(location=(3.535513,-76.297656),tiles="cartodbpositron", zoom_start=10)
-
-        
-        for row in df.itertuples():
-            iframe = folium.IFrame("<body style=font-family:'sans-serif'>Choque de vehículo tipo: " + 
-                                    row.CLASE_DE_VEHICULO +"<br>" +
-                                    "Nivel de gravedad:" +
-                                    row.GRAVEDAD)
-            
-            pop_up = folium.Popup(iframe, min_width=200, max_width=200)
-
-            some_map.add_child(folium.Marker(location=[row.LAT,row.LONG], popup=pop_up, icon=folium.Icon(color="red")))
-
-        folium_static(some_map)
-    
     components.html(
         """
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -112,17 +82,26 @@ if __name__=="__main__":
         </h6>
         <br>
         <h5> 
-        Quedo atento a comentarios, preguntas, dudas, críticas "constructivas", felicitaciones, ayuda y apoyo tanto en 
-        ideas para análisis como laboral. 
+        Quedo atento a comentarios, preguntas, dudas, críticas "constructivas", felicitaciones, 
+        ayuda, apoyo o ideas para mejorar el análisis. 
         </h5>
         <h5>
         Todavía exisite mucha información sin analizar, muchas operaciones a realizar y funciones por aprender. 
-        Programo mientras aprendo, así que ... <strong>ten paciencia</strong>. 
+        Programo mientras aprendo. Veras muchos cambios. <strong>Esto es de prueba y error</strong>. 
         </h5>      
         <br>
         <p>&copy; 2023 | Github: <a href="https://github.com/leoperezx">leoperezx</a>  | Twitter: <a href="https://twitter.com/leoperezx">@leoperezx</a></p> 
-        """,height=300,
+        """,height=250,
     )
+
+
+
+if __name__=="__main__":
+    main()
+    
+    
+    
+    
 
   
 
