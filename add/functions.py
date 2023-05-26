@@ -49,6 +49,6 @@ def generarMapa(data,options):
                     "<p>Nivel de gravedad:" + row.GRAVEDAD + "</p>" + 
                     "<p>Hipótesis del accidente:" + row.HIPOTESIS + "</p>")
         
-        folium.Marker([row.LAT,row.LONG], popup=pop_up, tooltip=tool_tip, icon=folium.Icon(color='black',icon_color='#FFFF00')).add_to(some_map)
+        folium.Marker([row.LAT,row.LONG], popup=pop_up, tooltip=tool_tip, icon=folium.Icon(color='#F1F2F6',icon_color='#FF4B4B')).add_to(some_map)
 
     return folium_static(some_map)
